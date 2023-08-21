@@ -1,29 +1,20 @@
 import React from "react";
-import styled from "styled-components";
-import { colors } from "../../utils/styles";
+import { StyledHeader } from "./StyledHeader";
 
-function HeaderBase({ className, title = "La tía" }) {
+function Header({ title = "La tía" }) {
+  const date = new Date();
+  const options = { weekday: "long", day: "numeric", month: "long" };
+  const formattedDate = new Intl.DateTimeFormat("es-ES", options).format(date);
+
   return (
-    <div className={className}>
-      <h1>{title}</h1>
-      <h2>Menú del día</h2>
-    </div>
+    <StyledHeader>
+      <>
+        <h1>{title}</h1>
+        <h2>Menú del día</h2>
+        <p>{formattedDate}</p>
+      </>
+    </StyledHeader>
   );
 }
-
-const Header = styled(HeaderBase)`
-  width: 100%;
-  text-align: center;
-
-  h1 {
-    font-family: "Lobster", cursive;
-    color: ${colors.green};
-  }
-
-  h2 {
-    font-family: "Courgette", cursive;
-    color: ${colors.dark};
-  }
-`;
 
 export default Header;
